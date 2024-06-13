@@ -61,6 +61,28 @@ jobs:
         with:
           directory: ./fonts
 
+      - name: Archive
+        run: |
+          echo "fonts 目录大小："
+          du -sh ./fonts
+
+          echo "删除临时文件夹"
+          rm -rf ./tmp
+
+          echo "打包 fonts 文件夹"
+          tar -caf fonts.tar.zst ./fonts
+          du -sh ./fonts.tar.zst
+
+      - name: Release
+        uses: softprops/action-gh-release@v2.0.5
+        with:
+          files: fonts.tar.zst
+          name: ${{ inputs.tag }}
+          tag_name: ${{ inputs.tag }}
+          draft: false
+          generate_release_notes: true
+          prerelease: false
+
       - name: Commit fonts
         run: |
           mv .npmignore fonts/.npmignore
@@ -85,25 +107,3 @@ jobs:
           tags: true
           directory: fonts
           branch: fonts
-
-      - name: Archive
-        run: |
-          echo "fonts 目录大小："
-          du -sh ./fonts
-
-          echo "删除临时文件夹"
-          rm -rf ./tmp
-
-          echo "打包 fonts 文件夹"
-          tar -caf fonts.tar.zst ./fonts
-          du -sh ./fonts.tar.zst
-
-      - name: Release
-        uses: softprops/action-gh-release@v2.0.5
-        with:
-          files: fonts.tar.zst
-          name: ${{ inputs.tag }}
-          tag_name: ${{ inputs.tag }}
-          draft: false
-          generate_release_notes: true
-          prerelease: false
