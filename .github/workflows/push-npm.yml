@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: latest
+          ref: fonts
 
       - name: Tree
         run: tree
