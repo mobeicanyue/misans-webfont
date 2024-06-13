@@ -1,0 +1,109 @@
+name: Split Fonts
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Tag name, e.g. v1.0.0"
+        required: true
+
+jobs:
+  build:
+    name: Split Fonts
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Update package.json tag name
+        run: |
+          pkg_tag=$(echo ${{ inputs.tag }} | sed -E 's/v//i')
+          jq --arg tag "$pkg_tag" '.version = $tag' package.json > tmp.json && mv tmp.json package.json
+
+      - name: Commit package.json
+        run: |
+          git config user.email github-actions[bot]@users.noreply.github.com
+          git config user.name github-actions[bot]
+          git add .
+          git commit -m "update package.json tag ${{ inputs.tag }}" -a
+
+      - name: Push package.json
+        uses: ad-m/github-push-action@v0.8.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
+
+      - name: Get OTF
+        run: bash scripts/get-fonts.sh
+
+      - name: Tree
+        run: tree ./tmp
+
+      - name: Process Fonts Directories
+        run: python scripts/process.py
+
+      - uses: oven-sh/setup-bun@v1
+
+      - name: Install Dependencies
+        run: bun i -g cn-font-split
+
+      - run: du -sh ./tmp
+
+      - name: Split Fonts
+        run: bash scripts/split.sh
+
+      - name: Tree
+        run: tree ./fonts
+
+      - name: Auto Minify
+        uses: nizarmah/auto-minify@v3
+        with:
+          directory: ./fonts
+
+      - name: Commit fonts
+        run: |
+          mv .npmignore fonts/.npmignore
+          mv README.md fonts/README.md
+          mv package.json fonts/package.json
+          mv index.html fonts/index.html
+          cd fonts || exit 1
+          git init
+          git config user.email github-actions[bot]@users.noreply.github.com
+          git config user.name github-actions[bot]
+          git checkout -b fonts
+          git status
+          git add .
+          git commit -m "update ${{ inputs.tag }}" -a
+          git tag ${{ inputs.tag }}
+
+      - name: Push changes
+        uses: ad-m/github-push-action@v0.8.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          force: true
+          tags: true
+          directory: fonts
+          branch: fonts
+
+      - name: Archive
+        run: |
+          echo "fonts 目录大小："
+          du -sh ./fonts
+
+          echo "删除临时文件夹"
+          rm -rf ./tmp
+
+          echo "打包 fonts 文件夹"
+          tar -caf fonts.tar.zst ./fonts
+          du -sh ./fonts.tar.zst
+
+      - name: Release
+        uses: softprops/action-gh-release@v2.0.5
+        with:
+          files: fonts.tar.zst
+          name: ${{ inputs.tag }}
+          tag_name: ${{ inputs.tag }}
+          draft: false
+          generate_release_notes: true
+          prerelease: false
