@@ -25,9 +25,9 @@ for folder in ./tmp/*; do
                 # 使用 cn-font-split 拆分字体文件
                 cn-font-split -i="$file" -o="./fonts/$folder_name/$font_name/" --renameOutputFont='[index][ext]' --reporter='false' --testHTML='false' || exit 1
 
-                touch "./fonts/$folder_name/style.css"
+                touch "./fonts/$folder_name-style.css"
                 # 生成 CSS 导入语句
-                echo "@import url('./$folder_name/$font_name/result.css');" >>"./fonts/$folder_name/style.css"
+                echo "@import url('./$folder_name/$font_name/result.css');" >>"./fonts/$folder_name-style.css"
             fi
         done
     fi

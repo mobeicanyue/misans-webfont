@@ -2,6 +2,9 @@
 
 本仓库旨在对 Misans 字体进行分包，方便字体在网页中加载。仅供学习交流使用。
 
+[![NPM Version](https://img.shields.io/npm/v/misans-webfont)](https://www.npmjs.com/package/misans-webfont)
+[![JsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/misans-webfont/badge?style=rounded)](https://www.jsdelivr.com/package/npm/misans-webfont)
+
 本仓库使用 Github Action，利用[中文网字计划](https://chinese-font.netlify.app/)开发的[字体分包工具](https://github.com/KonghaYao/cn-font-split)对原字体分包，网页加载时只需获取所使用的文字所在的分包，大幅降低所需加载的大小，提升网页加载速度。
 
 本仓库使用 Apache License 2.0 开源许可证，欢迎 PR, Star.
