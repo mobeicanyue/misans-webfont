@@ -1,0 +1,22 @@
+{
+  "name": "misans-webfont",
+  "version": "1.0.3",
+  "description": "Web font package for Misans",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mobeicanyue/misans-webfont.git"
+  },
+  "keywords": [
+    "misans",
+    "webfont",
+    "cjk",
+    "font",
+    "css"
+  ],
+  "author": "mobeicanyue <mobeicanyue@outlook.com> (https://www.ovvv.top)",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/mobeicanyue/misans-webfont/issues"
+  },
+  "homepage": "https://github.com/mobeicanyue/misans-webfont"
+}
