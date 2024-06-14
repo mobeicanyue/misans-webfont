@@ -9,11 +9,26 @@
 
 本仓库使用 Apache License 2.0 开源许可证，欢迎 PR, Star.
 
+## 使用
+直接下面提供的代码以 `<link>` 的形式添加到网页的 `<head>` 内即可
+
+```html
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mobeicanyue/misans-webfont@fonts/misans-style.css" />
+  <style>
+    body {
+      font-family: "MiSans-Bold";
+      font-weight: bold;
+    }
+  </style>
+</head>
+```
+
 以下信息摘录自小米官网，使用字体请遵守下文的许可协议。
 
 ## MiSans 简介
 
-![MiSans](https://github.com/mobeicanyue/misans-web/blob/main/misans.png?raw=true)
+![MiSans](https://github.com/mobeicanyue/misans-webfont/blob/main/misans.png?raw=true)
 
 MiSans Global 是由小米主导，联合蒙纳字库、汉仪字库共同打造的全球语言字体定制项目。这是一个庞大的字体家族，涵盖 20 多种书写系统，支持 600 多种语言，字符数量超过 10 万个。作为 Xiaomi HyperOS 系统默认字体，我们以简约/清晰，人文/易读，统一的视觉风格为基本原则出发，构建多语言信息体验一致性，旨在帮助为 Xiaomi HyperOS 提供互联的通用体验。
 
