@@ -10,19 +10,38 @@
 本仓库使用 Apache License 2.0 开源许可证，欢迎 PR, Star.
 
 ## 使用
-直接下面提供的代码以 `<link>` 的形式添加到网页的 `<head>` 内即可
+直接下面提供的代码以 `<link>` 的形式添加到网页的 `<head>` 内即可：
 
 ```html
 <head>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mobeicanyue/misans-webfont@fonts/misans-style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/misans-webfont/misans-style.css" />
   <style>
     body {
-      font-family: "MiSans-Bold";
+      font-family: "MiSans Bold";
       font-weight: bold;
     }
   </style>
 </head>
 ```
+
+
+你也可以只引用单一的字体：
+
+```html
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/misans-webfont/misans/misans-bold/result.min.css" />
+  <style>
+    body {
+      font-family: "MiSans Bold";
+      font-weight: bold;
+    }
+  </style>
+</head>
+```
+
+具体可以引用的字体请查看：[fonts 分支](https://github.com/mobeicanyue/misans-webfont/tree/fonts)，找到具体字体中的 `result.css`.
+
+---
 
 以下信息摘录自小米官网，使用字体请遵守下文的许可协议。
 
