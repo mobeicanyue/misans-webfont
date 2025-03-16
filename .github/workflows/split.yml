@@ -43,10 +43,8 @@ jobs:
       - name: Process Fonts Directories
         run: python scripts/process.py
 
-      - uses: oven-sh/setup-bun@v2
-
       - name: Install Dependencies
-        run: bun i -g cn-font-split
+        run: npm i -g cn-font-split
 
       - run: du -sh ./tmp
 

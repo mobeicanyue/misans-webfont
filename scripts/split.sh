@@ -23,7 +23,10 @@ for folder in ./tmp/*; do
                 # 获取文件名（不包含扩展名）
                 font_name=$(basename "$file" .otf | tr '[:upper:]' '[:lower:]')
                 # 使用 cn-font-split 拆分字体文件
-                cn-font-split -i="$file" -o="./fonts/$folder_name/$font_name/" --renameOutputFont='[index][ext]' --reporter='false' --testHTML='false' || exit 1
+                cn-font-split -i "$file" -o "./fonts/$folder_name/$font_name/" --renameOutputFont "[index].[ext]" --reporter "false" --testHtml "false" || exit 1
+
+                # 删除生成目录中的 index.proto 文件
+                rm -f "./fonts/$folder_name/$font_name/index.proto"
 
                 touch "./fonts/$folder_name-style.css"
                 # 生成 CSS 导入语句
