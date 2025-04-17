@@ -2,6 +2,7 @@
   "name": "misans-webfont",
   "version": "4.003.1",
   "description": "Web font package for Misans",
+  "main": "misans-style.css",
   "repository": {
     "type": "git",
     "url": "https://github.com/mobeicanyue/misans-webfont.git"
