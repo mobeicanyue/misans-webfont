@@ -24,14 +24,16 @@
 </head>
 ```
 
+更快响应速度
+
+**`bootcdn`**: https://cdn.bootcdn.net/ajax/libs/misans-webfont/4.3.1/misans-style.css
+
+**`webcache`**: https://npm.webcache.cn/misans-webfont/misans-style.css
 
 你也可以只引用单一的字体，修改上文 `href` 链接为：
 
 https://cdn.jsdelivr.net/npm/misans-webfont/misans/misans-bold/result.min.css
 
-如果您追求更快的响应速度，可以考虑使用 `webcache` 的 CDN，而不是上文的 `jsdelivr`：
-
-https://npm.webcache.cn/misans-webfont/misans-style.css
 
 具体可以引用的字体请查看：[fonts 分支](https://github.com/mobeicanyue/misans-webfont/tree/fonts)，找到具体字体中的 `result.css` 并修改上文链接。
 
